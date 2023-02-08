@@ -15,7 +15,7 @@ class CityController {
 	// Source of Truth
 	var cities: [City] = []
 
-	// MARK: - Functions
+	// MARK: - CRUD Functions
 	func createCity(name: String, temp: Double, high: Int? = nil, low: Int? = nil, status: String? = nil) {
 		let newCity = City(name: name, currentTemp: temp, dailyHigh: high, dailyLow: low, currentStatus: status)
 		cities.append(newCity)
@@ -24,6 +24,10 @@ class CityController {
     func updateCity(cityToUpdate: City, newName: String, newTemp: Double) {
         cityToUpdate.name = newName
         cityToUpdate.currentTemp = newTemp
-        
+    }
+    
+    func deleteCity(city: City) {
+        guard let index = cities.firstIndex(of: city) else {return}
+                cities.remove(at: index) 
     }
 }

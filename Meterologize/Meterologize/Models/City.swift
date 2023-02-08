@@ -21,4 +21,13 @@ class City {
 		self.dailyLow = dailyLow
 		self.currentStatus = currentStatus
 	}
-} // end of class
+}// end of class
+
+extension City: Equatable {
+    static func == (lhs: City, rhs: City) -> Bool {
+        return lhs.name == rhs.name &&
+        lhs.currentTemp == rhs.currentTemp
+    }
+ 
+    
+}

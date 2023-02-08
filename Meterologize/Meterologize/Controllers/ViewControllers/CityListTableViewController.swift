@@ -52,6 +52,15 @@ class CityListTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let city = CityController.sharedInstance.cities[indexPath.row]
+            CityController.sharedInstance.deleteCity(city: city)
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
 	// MARK: - Helper
 	func updateTableView() {
