@@ -15,7 +15,11 @@ class CityDetailViewController: UIViewController {
 	@IBOutlet weak var currentTempLabel: UILabel!
 	@IBOutlet weak var projectedHighLabel: UILabel!
 	@IBOutlet weak var projectedLowLabel: UILabel!
-
+    
+    // MARK: - PROPERTIES
+    var objectToRecieveTheDataFromOurPrepareForSegue: City?
+    
+    
 	// MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +29,7 @@ class CityDetailViewController: UIViewController {
 
 	// MARK: - Methods
 	func updateViews() {
-		let city = CityController.sharedInstance.cities[0]
+        guard let city = objectToRecieveTheDataFromOurPrepareForSegue else {return}
 
 		cityNameLabel.text = city.name
 		currentStatusLabel.text = city.currentStatus
@@ -34,5 +38,6 @@ class CityDetailViewController: UIViewController {
 		projectedLowLabel.text = "\(city.dailyLow)"
 
 		self.view.backgroundColor = city.currentTemp <= 80.0 ? .blue : .red
+        
 	}
 }// end of class
