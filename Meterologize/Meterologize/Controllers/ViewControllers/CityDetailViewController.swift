@@ -10,9 +10,11 @@ import UIKit
 class CityDetailViewController: UIViewController {
 
 	// MARK: - Outlets
-	@IBOutlet weak var cityNameLabel: UILabel!
-	@IBOutlet weak var currentStatusLabel: UILabel!
-	@IBOutlet weak var currentTempLabel: UILabel!
+	
+    @IBOutlet weak var cityNameTextField: UITextField!
+    @IBOutlet weak var cityTempTextField: UITextField!
+    @IBOutlet weak var currentStatusLabel: UILabel!
+	
 	@IBOutlet weak var projectedHighLabel: UILabel!
 	@IBOutlet weak var projectedLowLabel: UILabel!
     
@@ -28,12 +30,14 @@ class CityDetailViewController: UIViewController {
     }
 
 	// MARK: - Methods
-	func updateViews() {
+    @IBAction func saveButtonTapped(_ sender: Any) {
+    }
+    func updateViews() {
         guard let city = objectToRecieveTheDataFromOurPrepareForSegue else {return}
 
-		cityNameLabel.text = city.name
+		cityNameTextField.text = city.name
 		currentStatusLabel.text = city.currentStatus
-		currentTempLabel.text = "\(city.currentTemp)"
+		cityTempTextField.text = "\(city.currentTemp)"
 		projectedHighLabel.text = "\(city.dailyHigh)"
 		projectedLowLabel.text = "\(city.dailyLow)"
 
